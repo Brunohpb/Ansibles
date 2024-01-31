@@ -1,0 +1,17 @@
+- name: Model with script
+  hosts: all
+  become: yes
+  tasks:
+    - name: Transferindo o Script
+      copy:
+        src: ./scripts/script1.sh
+        dest: /tmp/script1.sh
+        mode: 0755
+
+    - name: Executando
+      shell: /tmp/script1.sh
+      register: script_output
+
+    - name: Resultado
+      debug:
+        var: script_output.stdout_lines

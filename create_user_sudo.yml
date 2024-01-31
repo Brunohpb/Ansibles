@@ -1,0 +1,30 @@
+- name: Criar usuário, definir senha e adicionar ao grupo sudo
+  hosts: all
+  become: yes
+
+  vars_prompt:
+    - name: "new_username"
+      prompt: "Digite o nome do novo usuário: "
+      private: no
+
+    - name: "new_password"
+      prompt: "Digite a senha para o novo usuário: "
+      private: yes
+
+  tasks:
+    - name: Criar usuário
+      user:
+        name: "{{ new_username }}"
+        createhome: yes
+        shell: /bin/bash
+
+    - name: Definir senha do usuário
+      user:
+        name: "{{ new_username }}"
+        password: "{{ new_password | password_hash('sha512') }}"
+
+    - name: Adicionar usuário ao grupo sudo
+      user:
+        name: "{{ new_username }}"
+        groups: sudo
+        append: yes

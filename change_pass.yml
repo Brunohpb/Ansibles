@@ -1,0 +1,21 @@
+- name: Alterar senha de usuário em vários servidores
+  hosts: all
+  become: yes
+
+  vars_prompt:
+    - name: "username"
+      prompt: "Digite o nome de usuário: "
+      private: no
+
+    - name: "new_password"
+      prompt: "Digite a nova senha: "
+      private: yes
+
+  tasks:
+    - name: Alterar a senha do usuário
+      user:
+        name: "{{ username }}"
+        password: "{{ new_password | password_hash('sha512') }}"
+    - name: Resultado
+      debug:
+        var: script_output.stdout_lines
