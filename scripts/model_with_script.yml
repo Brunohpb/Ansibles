@@ -4,7 +4,7 @@
   tasks:
     - name: Transferindo o Script
       copy:
-        src: ./scripts/script1.sh
+        src: ./script1.sh
         dest: /tmp/script1.sh
         mode: 0755
 
