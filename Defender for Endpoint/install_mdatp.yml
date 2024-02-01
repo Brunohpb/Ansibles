@@ -1,0 +1,9 @@
+- hosts: servers
+  tasks:
+    - include: ./onboarding_setup.yml
+    - include: ./add_apt_repo.yml
+    - name: Install MDATP
+      apt:
+        name: mdatp
+        state: latest
+        update_cache: yes

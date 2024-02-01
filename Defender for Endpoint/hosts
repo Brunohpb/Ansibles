@@ -1,0 +1,3 @@
+[servers]
+nome_do_servidor ansible_host=IP  
+nome_do_servidor2 ansible_host=IP 
