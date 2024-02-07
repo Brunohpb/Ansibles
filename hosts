@@ -1,4 +1,3 @@
 [servers]
 NameServer ansible_host=ip
 NameServer2 ansible_host=ip
-teste
